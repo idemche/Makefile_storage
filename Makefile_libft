@@ -6,7 +6,7 @@
 #    By: idemchen <idemchen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/30 14:10:16 by idemchen          #+#    #+#              #
-#    Updated: 2017/05/07 01:03:01 by idemchen         ###   ########.fr        #
+#    Updated: 2017/05/19 16:24:43 by idemchen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ NAME = libft.a
 CC		=	clang
 FLAGS	=	-Wall -Wextra -Werror
 LIBHEAD	=	includes/
+READ_FLAG = FALSE
+TMP_DIR =	$TMPDIR
 ##############################################################
 #	LIBFT
 ##############################################################
@@ -80,28 +82,30 @@ JUNK	= $(wildcard .DS_Store */.DS_Store */*/.DS_Store *.gch \
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
+man:
+	@echo "\033[1;35m               		 "
+	@echo "\033[1;35m                		 "
+	@echo "\033[1;35mLib_FT compilation      \033[0;32m	[In progress]\033[0m"
+	@echo "\033[1;35m------------------------\033[0m"
+
+$(NAME): $(OBJECTS) man
 	@ar rc $(NAME) $(OBJECTS)
 	@ranlib $(NAME)
-	@echo "\033[1;35m        __  ___ "
-	@echo "\033[1;35m        |_   |  "
-	@echo "\033[1;35mLib     |    |  "
-	@echo "\033[1;35m-----   -    -  \033[0m"
-	@echo "\033[1;34mlibft.a\t\033[1;33mPack\t\033[0;32m[Complete]\033[0m"
+	@echo "\033[1;35mlibft.a\t\033[1;33mCompression\t\033[0;32m	[Completed]\033[0m"
 
 %.o: %.c
 	@$(CC) -I $(LIBHEAD) -I $(GNLHEAD) -I $(PRINTF_HD) -c $(FLAGS) -o $@ $<
 
 clean:
 	@rm -rf $(OBJECTS)
-	@echo "\033[1;34mlibft\t\033[1;33mCleanse\t\033[0;32m[Done]\033[0m"
+	@echo "\033[1;34mlibft\t\033[1;33mCleanse\t\033[0;32m		[Done]\033[0m"
 
 fclean: clean
 	@rm -rf $(OBJECTS) $(NAME)
-	@echo "\033[1;34mlibft\t\033[1;33mCleanse\t\033[0;32m[Done]\033[0m"
+	@echo "\033[1;34mlibft\t\033[1;33mCleanse\t\033[0;32m		[Done]\033[0m"
 
 re: fclean all
 
 norme:
 	@norminette $(SOURCES) $(LIB_FT) $(pf_ft_PRINTF)
-	@echo "\033[1;33mlibft\t\033[1;33mNorme\t\033[0;32m[Completed]\033[0m"
+	@echo "\033[1;33mlibft\t\033[1;33mNorme\t\033[0;32m			[Completed]\033[0m"
